@@ -3,7 +3,7 @@ const http = require("http");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 1337;
 
 const MONGO_URI =
   "mongodb+srv://jaissy:mander1234@cluster0.43kmgjv.mongodb.net/notes-db?retryWrites=true&w=majority";
@@ -20,6 +20,11 @@ async function start() {
   }
 
   app.use(express.json());
+
+  app.use(function (req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+    next();
+  });
 
   app.post("/signup", async (req, res) => {
     const { email, password } = req.body;
