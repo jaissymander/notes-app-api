@@ -96,7 +96,7 @@ async function start() {
     if (result.modifiedCount !== 1) {
       return res.status(500).send("Failed to update note");
     }
-    res.send("Note updated successfully");
+    res.status(200).json({ message: "Note updated successfully" });
   });
 
   app.delete("/notes/:noteId", async (req, res) => {
