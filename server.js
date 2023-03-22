@@ -109,7 +109,7 @@ async function start() {
     if (result.modifiedCount !== 1) {
       return res.status(500).send("Failed to delete note");
     }
-    res.send("Note deleted successfully");
+    res.status(200).json({ message: "Success" });
   });
 
   async function getUsersCollection() {
