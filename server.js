@@ -76,7 +76,7 @@ async function start() {
     if (result.modifiedCount !== 1) {
       return res.status(500).send("Failed to add note");
     }
-    res.send("Note added successfully");
+    res.status(200).json({ message: "Success" });
   });
 
   app.put("/notes/:noteId", async (req, res) => {
