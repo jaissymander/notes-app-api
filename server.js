@@ -104,8 +104,9 @@ async function start() {
     const users = await getUsersCollection();
     const result = await users.updateOne(
       { "notes.noteId": new ObjectId(noteId) },
-      { $pull: { notes: { noteId: ObjectId(noteId) } } }
+      { $pull: { notes: { noteId: new ObjectId(noteId) } } }
     );
+    console.log(result);
     if (result.modifiedCount !== 1) {
       return res.status(500).send("Failed to delete note");
     }
