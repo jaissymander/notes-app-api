@@ -61,8 +61,9 @@ async function start() {
   app.post("/notes/:userId", async (req, res) => {
     const { userId } = req.params;
     const { title, content } = req.body;
+    const noteId = new ObjectId();
     const notes = {
-      noteId: new ObjectId(),
+      noteId: noteId,
       title,
       content,
       createdAt: new Date(),
@@ -76,7 +77,7 @@ async function start() {
     if (result.modifiedCount !== 1) {
       return res.status(500).send("Failed to add note");
     }
-    res.status(200).json({ message: "Success" });
+    res.status(200).json({ message: "Success", id: noteId });
   });
 
   app.put("/notes/:noteId", async (req, res) => {
