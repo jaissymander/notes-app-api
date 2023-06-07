@@ -43,7 +43,7 @@ async function start() {
     const users = await getUsersCollection();
     const user = await users.findOne({ email });
     if (!user || user.password !== password) {
-      return res.status(401).send("Invalid email or password");
+      return res.status(401).send({ error: "Invalid email or password" });
     }
     res.send(user);
   });
