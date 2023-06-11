@@ -32,9 +32,14 @@ async function start() {
   });
 
   app.post("/signup", async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
     const users = await getUsersCollection();
-    const result = await users.insertOne({ email, password, notes: [] });
+    const result = await users.insertOne({
+      email,
+      password,
+      username,
+      notes: [],
+    });
     res.send(result);
   });
 
