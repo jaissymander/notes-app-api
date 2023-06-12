@@ -40,7 +40,7 @@ async function start() {
       username,
       notes: [],
     });
-    res.send(result);
+    res.send({ result, username });
   });
 
   app.post("/login", async (req, res) => {
